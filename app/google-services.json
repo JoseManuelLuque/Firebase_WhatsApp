@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694063784729",
+    "project_id": "prueba-whatsapp-ecf35",
+    "storage_bucket": "prueba-whatsapp-ecf35.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694063784729:android:6cc3513f4303c7a4409b88",
+        "android_client_info": {
+          "package_name": "com.jluqgon214.whatsapppruebas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABuD8R4DAck2knnHwxW0wG_bGh2aQKvt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
