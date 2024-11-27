@@ -35,10 +35,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.jluqgon214.whatsapppruebas.R
 import com.jluqgon214.whatsapppruebas.components.BottomNavigationBar
 import com.jluqgon214.whatsapppruebas.components.MainTopBar
-import com.jluqgon214.whatsapppruebas.data.DataBaseTest
+import com.jluqgon214.whatsapppruebas.data.TestDB
 import com.jluqgon214.whatsapppruebas.data.WhatsAppViewModel
 import com.jluqgon214.whatsapppruebas.ui.theme.ColorIconos
 import com.jluqgon214.whatsapppruebas.ui.theme.ColorIconos2
@@ -49,6 +52,8 @@ import com.jluqgon214.whatsapppruebas.ui.theme.VerdeLlamativo
 
 @Composable
 fun MainScreen(navController: NavController, viewModel: WhatsAppViewModel) {
+    val db: FirebaseFirestore = Firebase.firestore
+    val testDb = TestDB()
     if (viewModel.mensajesPorContacto.isEmpty()) {
         viewModel.inicializarMensajes()
     }
@@ -80,11 +85,7 @@ fun MainScreen(navController: NavController, viewModel: WhatsAppViewModel) {
                                 .fillMaxWidth()
                                 .height(85.dp),
                             onClick = {
-                                //Test DataBase FireBase
-                                val DataBaseTest = DataBaseTest()
-                                DataBaseTest.setValue()
-                                DataBaseTest.Listener()
-
+                                testDb.agregarColleccion(db)
                                 viewModel.actualizarContactoActual(contacto)
                                 navController.navigate("ChatScreen")
                                 val index = viewModel.listaContactos.indexOf(contacto)
@@ -144,9 +145,7 @@ fun MainScreen(navController: NavController, viewModel: WhatsAppViewModel) {
                                                 viewModel.mensajesPorContacto[contacto.id]?.lastOrNull()?.contenido
                                                     ?: ""
                                             Text(
-                                                text = "${
-                                                    ultimoMensaje
-                                                }",
+                                                text = "$ultimoMensaje",
                                                 color = ColorTextoSecundario
                                             )
                                         }
